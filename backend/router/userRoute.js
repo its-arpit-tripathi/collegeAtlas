@@ -65,6 +65,9 @@ router.post("/signin", async (req, res) => {
       if (!isMatch) {
         return res.status(400).json({ error: "Invalid password" });
       } else {
+        if (!process.env.JWT_SECRET) {
+          throw new Error("JWT_SECRET environment variable is missing in server configuration.");
+        }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         
         const isHttps = req.secure || req.headers["x-forwarded-proto"] === "https";
@@ -88,7 +91,7 @@ router.post("/signin", async (req, res) => {
   
     } catch (error) {
       console.error("Signin error:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ error: "Internal Server Error", message: error.message });
     }
 });
 

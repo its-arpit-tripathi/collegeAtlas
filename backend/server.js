@@ -50,21 +50,33 @@ app.use(cors({
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+// Ensure database is connected for every request (essential for Vercel serverless lambdas)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error("Database connection error:", err.message);
+    return res.status(500).json({
+      error: "Database Connection Error",
+      message: err.message
+    });
+  }
+});
+
 app.use(dataRouter);
 app.use(contactRoute);
 app.use(userRoute);
 
 app.get("/auth", authMiddleware, (req, res) => {
-    res.status(200).json({
-        success: true,
-        user: req.user
-    });
+  res.status(200).json({
+    success: true,
+    user: req.user
+  });
 });
 
-if (!process.env.VERCEL) {
-    app.listen(PORT, () => {
-        console.log(`Server is running at ${PORT} `);
-    });
-}
+app.listen(PORT, () => {
+  console.log(`Server is running at ${PORT} `);
+})
 
 export default app;

@@ -2,34 +2,39 @@ import mongoose from "mongoose";
 
 async function connectDB() {
     if (mongoose.connection.readyState >= 1) {
-        return;
+        return mongoose.connection;
     }
 
     const primaryURL = process.env.URL;
     const fallbackURL = "mongodb://127.0.0.1:27017/collegefinder";
 
-    if (!primaryURL) {
-        console.warn("process.env.URL is not defined.");
-        return;
+    if (!primaryURL && process.env.VERCEL) {
+        throw new Error("MongoDB URL is missing. Please set the 'URL' environment variable in your Vercel project settings.");
     }
 
+    const targetURL = primaryURL || fallbackURL;
+
     try {
-        await mongoose.connect(primaryURL);
-        console.log("Database Connected Successfully to Primary URL");
+        await mongoose.connect(targetURL, {
+            serverSelectionTimeoutMS: 5000
+        });
+        console.log("Database Connected Successfully to", targetURL.startsWith("mongodb+srv") ? "MongoDB Atlas" : "Local Database");
+        return mongoose.connection;
     } catch (e) {
-        console.warn(`Primary Database Connection Failed: ${e.message}`);
+        console.error(`Database Connection Failed: ${e.message}`);
         
-        if (primaryURL !== fallbackURL && !process.env.VERCEL) {
+        if (primaryURL && primaryURL !== fallbackURL && !process.env.VERCEL) {
             console.log(`Attempting fallback to local MongoDB: ${fallbackURL}`);
             try {
-                await mongoose.connect(fallbackURL);
+                await mongoose.connect(fallbackURL, { serverSelectionTimeoutMS: 3000 });
                 console.log("Database Connected Successfully to Local Fallback!");
+                return mongoose.connection;
             } catch (fallbackErr) {
                 console.error("Local Database Fallback also failed:", fallbackErr.message);
-                process.exit(1);
+                throw fallbackErr;
             }
-        } else if (!process.env.VERCEL) {
-            process.exit(1);
+        } else {
+            throw e;
         }
     }
 }

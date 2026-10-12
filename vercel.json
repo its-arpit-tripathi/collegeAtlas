@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "cleanUrls": true,
   "builds": [
     {
       "src": "backend/server.js",
@@ -12,7 +13,7 @@
   ],
   "routes": [
     {
-      "src": "/(signup|signin|logout|colleges|auth|contact|send-email)",
+      "src": "/(signup|signin|logout|colleges|auth|contact|send-email)(.*)",
       "dest": "backend/server.js"
     },
     {

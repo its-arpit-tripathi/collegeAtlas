@@ -13,7 +13,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({path:"./config.env", override: true});
+dotenv.config({ path: path.join(__dirname, "config.env"), override: true });
 const app = express();
 const PORT = process.env.PORT || 8000;
 app.use(cookieParser());
@@ -61,8 +61,10 @@ app.get("/auth", authMiddleware, (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running at ${PORT} `);
-})
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Server is running at ${PORT} `);
+    });
+}
 
 export default app;

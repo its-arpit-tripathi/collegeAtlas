@@ -79,8 +79,21 @@ if (modalSearchBox) {
     clearTimeout(modalSearchDebounceTimer);
     modalSearchDebounceTimer = setTimeout(async () => {
       currentPage = 1;
-      await fetchAndRenderColleges(false);
+      // Reset state filter on new internal search so it is not constrained by previous search results
+      if (stateFilter) stateFilter.value = "";
+      if (detailDrawer) detailDrawer.classList.add("hidden");
+      await fetchAndRenderColleges(true);
     }, 300);
+  });
+
+  modalSearchBox.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+      clearTimeout(modalSearchDebounceTimer);
+      currentPage = 1;
+      if (stateFilter) stateFilter.value = "";
+      if (detailDrawer) detailDrawer.classList.add("hidden");
+      await fetchAndRenderColleges(true);
+    }
   });
 }
 
@@ -144,8 +157,8 @@ async function fetchAndRenderColleges(isFreshSearch = false) {
   const modalRefinement = modalSearchBox ? modalSearchBox.value.trim() : "";
   const selectedState = stateFilter ? stateFilter.value.trim() : "";
 
-  // Combine base search with modal query refinement
-  const activeSearch = [currentSearchQuery, modalRefinement].filter(Boolean).join(" ");
+  // Internal modal search resets and searches directly (does not concatenate with base search)
+  const activeSearch = modalRefinement !== "" ? modalRefinement : currentSearchQuery;
 
   const response = await getColleges(activeSearch, selectedState, currentPage);
 

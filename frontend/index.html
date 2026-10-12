@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CollegeAtlas | Your Global Academic Gateway</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#23005b",
+                        "inverse-primary": "#006970",
+                        "primary-fixed": "#7df4ff",
+                        "background": "#111318",
+                        "on-tertiary-fixed-variant": "#003fa4",
+                        "primary-fixed-dim": "#00dbe9",
+                        "on-primary-fixed-variant": "#004f54",
+                        "outline": "#849495",
+                        "on-surface-variant": "#b9cacb",
+                        "tertiary-fixed": "#dae1ff",
+                        "surface-tint": "#00dbe9",
+                        "secondary-fixed-dim": "#d1bcff",
+                        "surface": "#111318",
+                        "accent-cyan": "#00F0FF",
+                        "on-primary": "#00363a",
+                        "on-secondary-container": "#ddcdff",
+                        "surface-container-low": "#1a1c20",
+                        "secondary-container": "#7000ff",
+                        "surface-dim": "#111318",
+                        "secondary-fixed": "#e9ddff",
+                        "on-secondary": "#3c0090",
+                        "on-primary-container": "#006970",
+                        "surface-glass": "rgba(255, 255, 255, 0.05)",
+                        "on-background": "#e2e2e8",
+                        "surface-container-high": "#282a2e",
+                        "on-error": "#690005",
+                        "outline-variant": "#3b494b",
+                        "surface-container-lowest": "#0c0e12",
+                        "inverse-surface": "#e2e2e8",
+                        "surface-bright": "#37393e",
+                        "secondary": "#d1bcff",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#002022",
+                        "status-error": "#DC3545",
+                        "inverse-on-surface": "#2f3035",
+                        "primary-container": "#00f0ff",
+                        "on-tertiary-fixed": "#001849",
+                        "on-error-container": "#ffdad6",
+                        "error-container": "#93000a",
+                        "text-primary": "#FFFFFF",
+                        "primary": "#dbfcff",
+                        "surface-deep": "#050608",
+                        "on-tertiary-container": "#0055d6",
+                        "tertiary-fixed-dim": "#b3c5ff",
+                        "tertiary-container": "#ced8ff",
+                        "surface-container": "#1e2024",
+                        "on-tertiary": "#002b75",
+                        "on-secondary-fixed-variant": "#5700c9",
+                        "accent-electric-blue": "#4285F4",
+                        "tertiary": "#f5f5ff",
+                        "on-surface": "#e2e2e8",
+                        "surface-container-highest": "#333539",
+                        "surface-variant": "#333539",
+                        "text-secondary": "#94A3B8",
+                        "accent-purple": "#A020F0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "section-gap-lg": "120px",
+                        "container-max": "1280px",
+                        "section-gap-sm": "64px",
+                        "card-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["12px", {"lineHeight": "1", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        :root {
+            --cursor-x: 0px;
+            --cursor-y: 0px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #00F0FF;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 240, 255, 0.2);
+        }
+        .glass-card:hover button {
+            background-color: rgba(0, 240, 255, 0.1);
+            border-color: #00F0FF;
+        }
+        .glow-button {
+            background: linear-gradient(135deg, #7000ff 0%, #00F0FF 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-size: 200% auto;
+        }
+        .glow-button:hover {
+            background-position: right center;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+            transform: scale(1.05);
+        }
+        .atmospheric-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(112, 0, 255, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: -1;
+            animation: pulse-glow 8s infinite alternate ease-in-out;
+        }
+        @keyframes pulse-glow {
+            from { transform: scale(1); opacity: 0.5; }
+            to { transform: scale(1.2); opacity: 0.8; }
+        }
+        .input-glow:focus {
+            border-bottom: 2px solid #00F0FF;
+            box-shadow: 0 10px 20px -10px rgba(0, 240, 255, 0.3);
+        }
+        .text-gradient-cyan {
+            background: linear-gradient(to right, #00F0FF, #7df4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradient-flow 4s linear infinite;
+        }
+        @keyframes gradient-flow {
+            to { background-position: 200% center; }
+        }
+        
+        /* Entrance Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+
+        /* Canvas particles */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Animated Background Gradients */
+        .animated-bg {
+            background: linear-gradient(135deg, #050608 0%, #111318 50%, #050608 100%);
+            background-size: 400% 400%;
+            animation: bg-shift 15s infinite ease-in-out;
+        }
+        @keyframes bg-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-delay: -1ms !important;
+                animation-duration: 1ms !important;
+                animation-iteration-count: 1 !important;
+                background-attachment: initial !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0s !important;
+                transition-delay: 0s !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            #particle-canvas, #custom-cursor, #cursor-follower { display: none !important; }
+        }
+
+        /* Custom Toast Notifications */
+        .custom-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1a1c20;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 16px 28px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            font-weight: 500;
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10000;
+            pointer-events: none;
+        }
+        .custom-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .custom-toast.success {
+            border-left: 4px solid #00F0FF;
+        }
+        .custom-toast.error {
+            border-left: 4px solid #DC3545;
+        }
+
+        /* Custom Scrollbar Styles */
+        /* For Webkit-based browsers (Chrome, Edge, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050608;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        /* Specific scrollbar styling for the results list and modal containers to be even sleeker */
+        .college-results::-webkit-scrollbar,
+        .glass-card::-webkit-scrollbar,
+        #college-overlay::-webkit-scrollbar,
+        #detail-drawer::-webkit-scrollbar,
+        div::-webkit-scrollbar {
+            width: 6px;
+        }
+        .college-results::-webkit-scrollbar-thumb,
+        .glass-card::-webkit-scrollbar-thumb,
+        #college-overlay::-webkit-scrollbar-thumb,
+        #detail-drawer::-webkit-scrollbar-thumb,
+        div::-webkit-scrollbar-thumb {
+            background: rgba(0, 240, 255, 0.2);
+        }
+        .college-results::-webkit-scrollbar-thumb:hover,
+        .glass-card::-webkit-scrollbar-thumb:hover,
+        #college-overlay::-webkit-scrollbar-thumb:hover,
+        #detail-drawer::-webkit-scrollbar-thumb:hover,
+        div::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+        }
+
+        /* For Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 240, 255, 0.25) #050608;
+        }
+
+        /* Smooth Scrolling */
+        html,
+        .college-results,
+        #college-overlay,
+        #detail-drawer,
+        div {
+            scroll-behavior: smooth;
+        }
+
+        /* Performance Optimizations to Eliminate Scroll Lag */
+        .college-results {
+            transform: translate3d(0, 0, 0);
+            will-change: scroll-position;
+        }
+        
+        .result-card {
+            background: #1e2024; /* Solid color matches surface-container, avoiding expensive backdrop-filter paints */
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            will-change: transform;
+            transform: translate3d(0, 0, 0); /* Forces GPU compositing layer */
+            transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .result-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            transform: translate3d(0, -4px, 0) scale(1.01);
+            box-shadow: 0 8px 24px rgba(0, 240, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="animated-bg text-on-surface font-body-md overflow-x-hidden">
+<canvas id="particle-canvas"></canvas>
+
+
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-md border-b border-white/10 shadow-md transition-all duration-300" id="main-header">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+        <a href="index.html" class="font-headline-md text-headline-md font-bold text-accent-cyan tracking-tight flex items-center gap-2">
+            <span class="material-symbols-outlined text-[26px]">travel_explore</span>
+            CollegeAtlas
+        </a>
+        <nav class="hidden md:flex gap-8 items-center">
+            <a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 hover:text-accent-cyan transition-colors" href="index.html">Universities</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-accent-cyan transition-colors" href="rankings.html">Rankings</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-accent-cyan transition-colors" href="destinations.html">Destinations</a>
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-accent-cyan transition-colors" href="admissions.html">Admissions</a>
+        </nav>
+        <div id="auth-nav-container" class="flex items-center gap-4">
+            <a href="login.html" class="font-body-md text-body-md text-on-surface hover:text-accent-cyan transition-colors">Login</a>
+            <a href="signup.html" class="glow-button px-6 py-2 rounded-full font-bold text-white text-body-sm block text-center">Get Started</a>
+        </div>
+    </div>
+</header>
+
+<main class="pt-20">
+    <!-- Hero Section -->
+    <section class="relative h-[85vh] flex items-center justify-center overflow-hidden" id="hero">
+        <div class="absolute inset-0 z-0 overflow-hidden" id="hero-parallax-container">
+            <div class="absolute inset-0 bg-gradient-to-b from-surface-deep/40 via-surface-deep/60 to-surface-deep z-10"></div>
+            <img alt="Immersive Hero Background" class="w-full h-full object-cover scale-125 transition-transform duration-200 ease-out" id="hero-bg" src="images/hero_banner.png"/>
+        </div>
+        <div class="relative z-20 text-center max-w-3xl px-gutter reveal">
+            <h1 class="font-display-lg text-display-lg text-white mb-6 leading-tight">Find colleges and plan your <span class="text-gradient-cyan">academic future</span> with us!</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">Start your college search on the world’s trusted platform. Explore top universities globally and find your perfect academic match.</p>
+            <div class="glass-card p-2 rounded-full flex items-center max-w-2xl mx-auto border border-white/20">
+                <span class="material-symbols-outlined ml-4 text-on-surface-variant">search</span>
+                <input id="search_box" class="bg-transparent border-none focus:ring-0 w-full text-white px-4 placeholder:text-outline" placeholder="Search by university, state, or country..." type="text"/>
+                <button id="searchbtn" class="glow-button px-8 py-3 rounded-full font-bold text-white transition-all">Search</button>
+            </div>
+        </div>
+        <div class="atmospheric-glow -top-20 -left-20"></div>
+        <div class="atmospheric-glow -bottom-20 -right-20"></div>
+    </section>
+
+    <!-- Continental Sections -->
+    <div class="max-w-container-max mx-auto px-gutter space-y-section-gap-lg my-section-gap-lg">
+        <!-- Asia -->
+        <section class="reveal">
+            <div class="flex items-center justify-between mb-12 border-b border-outline-variant pb-4">
+                <h2 class="font-headline-xl text-headline-xl text-white">Top Colleges of Asia</h2>
+                <span class="text-accent-cyan font-label-bold tracking-widest">CONTINENTAL FOCUS</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- IIT Bombay -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="IIT Bombay Campus" src="images/iit_bombay.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #118</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">IIT Bombay</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> India
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://acad.iitb.ac.in/','_blank')">View Details</button>
+                    </div>
+                </div>
+                <!-- University of Tokyo -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="University of Tokyo" src="images/tokyo.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #28</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">University of Tokyo</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> Japan
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://www.u-tokyo.ac.jp/en/','_blank')">View Details</button>
+                    </div>
+                </div>
+                <!-- NUS -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="NUS Singapore" src="images/nus.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #8</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">NUS Singapore</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> Singapore
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://www.nus.edu.sg/','_blank')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Europe -->
+        <section class="reveal">
+            <div class="flex items-center justify-between mb-12 border-b border-outline-variant pb-4">
+                <h2 class="font-headline-xl text-headline-xl text-white">Top Colleges of Europe</h2>
+                <span class="text-accent-cyan font-label-bold tracking-widest">ACADEMIC TRADITION</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Oxford -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="images/oxford.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #4</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">University of Oxford</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> United Kingdom
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://www.ox.ac.uk/','_blank')">View Details</button>
+                    </div>
+                </div>
+                <!-- ETH Zurich -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="images/zurich.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #7</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">ETH Zurich</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> Switzerland
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://ethz.ch/en.html','_blank')">View Details</button>
+                    </div>
+                </div>
+                <!-- Cambridge -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="images/Cambridge.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #6</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">University of Cambridge</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> United Kingdom
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://www.cam.ac.uk/','_blank')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- North America -->
+        <section class="reveal">
+            <div class="flex items-center justify-between mb-12 border-b border-outline-variant pb-4">
+                <h2 class="font-headline-xl text-headline-xl text-white">Top Colleges of North America</h2>
+                <span class="text-accent-cyan font-label-bold tracking-widest">INNOVATION HUB</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- MIT -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="images/mit.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #1</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">MIT</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> United States
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://www.mit.edu/','_blank')">View Details</button>
+                    </div>
+                </div>
+                <!-- Stanford -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="images/standford.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #3</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">Stanford University</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> United States
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://www.stanford.edu/','_blank')">View Details</button>
+                    </div>
+                </div>
+                <!-- Harvard -->
+                <div class="glass-card rounded-xl overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="images/Harvard.jpg"/>
+                    </div>
+                    <div class="p-card-padding">
+                        <span class="bg-tertiary/10 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] mb-4 inline-block">QS #5</span>
+                        <h4 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-accent-cyan transition-colors">Harvard University</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">location_on</span> United States
+                        </p>
+                        <button class="w-full border border-primary/30 py-3 rounded-lg font-bold text-primary hover:bg-primary/10 transition-all" onclick="window.open('https://www.harvard.edu/','_blank')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Global Rankings Showcase Section -->
+    <section class="max-w-container-max mx-auto px-gutter my-section-gap-lg reveal" id="rankings">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-outline-variant pb-6 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 text-accent-cyan text-xs font-semibold uppercase tracking-widest mb-3">
+                    <span class="material-symbols-outlined text-[16px]">military_tech</span> World Benchmarks 2025–2026
+                </div>
+                <h2 class="font-headline-xl text-headline-xl text-white">Global University <span class="text-gradient-cyan">Rankings</span></h2>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+                    Comprehensive evaluation of academic prestige, faculty research citations, employer reputation, and international student ratios.
+                </p>
+            </div>
+            <a href="rankings.html" class="glow-button px-6 py-2.5 rounded-full font-bold text-white text-xs tracking-wider uppercase inline-flex items-center gap-2 shrink-0">
+                View Full Rankings <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Rank 1 Card -->
+            <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-amber-400 text-black font-headline font-black text-lg flex items-center justify-center shadow-lg shadow-amber-400/20">#1</span>
+                    <span class="text-xs font-mono font-bold text-accent-cyan bg-accent-cyan/10 px-2.5 py-1 rounded-full">Score 100</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-white font-bold mb-1 group-hover:text-accent-cyan transition-colors">MIT</h3>
+                <p class="text-xs text-text-secondary flex items-center gap-1.5 mb-4">
+                    <span class="material-symbols-outlined text-[15px] text-accent-cyan">location_on</span> Cambridge, United States
+                </p>
+                <div class="space-y-2 border-t border-white/5 pt-4 text-xs text-text-secondary mb-6">
+                    <div class="flex justify-between"><span>Acceptance Rate:</span> <span class="text-white font-mono font-semibold">3.9%</span></div>
+                    <div class="flex justify-between"><span>Key Focus:</span> <span class="text-white font-semibold">AI, Quantum, Engineering</span></div>
+                </div>
+                <a href="index.html?search=Massachusetts+Institute+of+Technology" class="w-full block text-center py-2.5 rounded-xl border border-white/10 hover:border-accent-cyan hover:bg-accent-cyan/10 text-accent-cyan text-xs font-bold transition-all">
+                    Search in Finder &rarr;
+                </a>
+            </div>
+
+            <!-- Rank 2 Card -->
+            <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-slate-200 text-black font-headline font-black text-lg flex items-center justify-center shadow-lg shadow-white/20">#2</span>
+                    <span class="text-xs font-mono font-bold text-accent-cyan bg-accent-cyan/10 px-2.5 py-1 rounded-full">Score 98.5</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-white font-bold mb-1 group-hover:text-accent-cyan transition-colors">Imperial College London</h3>
+                <p class="text-xs text-text-secondary flex items-center gap-1.5 mb-4">
+                    <span class="material-symbols-outlined text-[15px] text-accent-cyan">location_on</span> London, United Kingdom
+                </p>
+                <div class="space-y-2 border-t border-white/5 pt-4 text-xs text-text-secondary mb-6">
+                    <div class="flex justify-between"><span>Acceptance Rate:</span> <span class="text-white font-mono font-semibold">11.5%</span></div>
+                    <div class="flex justify-between"><span>Key Focus:</span> <span class="text-white font-semibold">Biotech, Energy, Computing</span></div>
+                </div>
+                <a href="index.html?search=Imperial+College+London" class="w-full block text-center py-2.5 rounded-xl border border-white/10 hover:border-accent-cyan hover:bg-accent-cyan/10 text-accent-cyan text-xs font-bold transition-all">
+                    Search in Finder &rarr;
+                </a>
+            </div>
+
+            <!-- Rank 3 Card -->
+            <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="w-10 h-10 rounded-xl bg-amber-700 text-white font-headline font-black text-lg flex items-center justify-center shadow-lg shadow-amber-700/20">#3</span>
+                    <span class="text-xs font-mono font-bold text-accent-cyan bg-accent-cyan/10 px-2.5 py-1 rounded-full">Score 98.1</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-white font-bold mb-1 group-hover:text-accent-cyan transition-colors">University of Oxford</h3>
+                <p class="text-xs text-text-secondary flex items-center gap-1.5 mb-4">
+                    <span class="material-symbols-outlined text-[15px] text-accent-cyan">location_on</span> Oxford, United Kingdom
+                </p>
+                <div class="space-y-2 border-t border-white/5 pt-4 text-xs text-text-secondary mb-6">
+                    <div class="flex justify-between"><span>Acceptance Rate:</span> <span class="text-white font-mono font-semibold">14.1%</span></div>
+                    <div class="flex justify-between"><span>Key Focus:</span> <span class="text-white font-semibold">Humanities, Medicine, Law</span></div>
+                </div>
+                <a href="index.html?search=University+of+Oxford" class="w-full block text-center py-2.5 rounded-xl border border-white/10 hover:border-accent-cyan hover:bg-accent-cyan/10 text-accent-cyan text-xs font-bold transition-all">
+                    Search in Finder &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Abroad Destinations Showcase Section -->
+    <section class="max-w-container-max mx-auto px-gutter my-section-gap-lg reveal" id="destinations">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-outline-variant pb-6 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/15 border border-secondary/30 text-secondary text-xs font-semibold uppercase tracking-widest mb-3">
+                    <span class="material-symbols-outlined text-[16px]">public</span> Immigration & Academic Hubs
+                </div>
+                <h2 class="font-headline-xl text-headline-xl text-white">Top Study Abroad <span class="text-gradient-cyan">Destinations</span></h2>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+                    Compare post-study work visa terms, average tuition fees, and career pathways across the world's most sought-after education destinations.
+                </p>
+            </div>
+            <a href="destinations.html" class="glow-button px-6 py-2.5 rounded-full font-bold text-white text-xs tracking-wider uppercase inline-flex items-center gap-2 shrink-0">
+                Explore All Destinations <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- USA -->
+            <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm font-bold text-white">🇺🇸 USA</span>
+                        <span class="text-[10px] bg-accent-cyan/10 text-accent-cyan font-bold px-2 py-0.5 rounded">3-Yr STEM OPT</span>
+                    </div>
+                    <p class="text-xs text-text-secondary leading-relaxed mb-4">
+                        Silicon Valley, Ivy League institutions, and unmatched venture capital ecosystems.
+                    </p>
+                    <div class="text-[11px] space-y-1.5 text-text-secondary mb-4 border-t border-white/5 pt-3">
+                        <div>Tuition: <span class="text-white font-mono">$25k–$58k/yr</span></div>
+                        <div>Living: <span class="text-white font-mono">$1.2k–$2.4k/mo</span></div>
+                    </div>
+                </div>
+                <a href="index.html?search=United+States" class="glow-button py-2 rounded-xl text-center text-xs font-bold text-white uppercase tracking-wider block">
+                    Find US Colleges &rarr;
+                </a>
+            </div>
+
+            <!-- UK -->
+            <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm font-bold text-white">🇬🇧 UK</span>
+                        <span class="text-[10px] bg-secondary/15 text-secondary font-bold px-2 py-0.5 rounded">1-Yr Masters</span>
+                    </div>
+                    <p class="text-xs text-text-secondary leading-relaxed mb-4">
+                        World-famous Russell Group, fast-track graduate programs, and 2-year Graduate Route visa.
+                    </p>
+                    <div class="text-[11px] space-y-1.5 text-text-secondary mb-4 border-t border-white/5 pt-3">
+                        <div>Tuition: <span class="text-white font-mono">£16k–£36k/yr</span></div>
+                        <div>Living: <span class="text-white font-mono">£1.1k–£1.8k/mo</span></div>
+                    </div>
+                </div>
+                <a href="index.html?search=United+Kingdom" class="glow-button py-2 rounded-xl text-center text-xs font-bold text-white uppercase tracking-wider block">
+                    Find UK Colleges &rarr;
+                </a>
+            </div>
+
+            <!-- Canada -->
+            <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm font-bold text-white">🇨🇦 Canada</span>
+                        <span class="text-[10px] bg-emerald-500/15 text-emerald-400 font-bold px-2 py-0.5 rounded">3-Yr PGWP</span>
+                    </div>
+                    <p class="text-xs text-text-secondary leading-relaxed mb-4">
+                        Exceptional quality of living, multicultural cities, and structured permanent residency routes.
+                    </p>
+                    <div class="text-[11px] space-y-1.5 text-text-secondary mb-4 border-t border-white/5 pt-3">
+                        <div>Tuition: <span class="text-white font-mono">CAD $20k–$42k</span></div>
+                        <div>Living: <span class="text-white font-mono">CAD $1.2k–$2k/mo</span></div>
+                    </div>
+                </div>
+                <a href="index.html?search=Canada" class="glow-button py-2 rounded-xl text-center text-xs font-bold text-white uppercase tracking-wider block">
+                    Find Canada Colleges &rarr;
+                </a>
+            </div>
+
+            <!-- Germany -->
+            <div class="glass-card rounded-2xl p-5 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-sm font-bold text-white">🇩🇪 Germany</span>
+                        <span class="text-[10px] bg-amber-400/15 text-amber-300 font-bold px-2 py-0.5 rounded">Zero Tuition</span>
+                    </div>
+                    <p class="text-xs text-text-secondary leading-relaxed mb-4">
+                        Tuition-free public universities, powerhouse engineering, and 18-month job search visa.
+                    </p>
+                    <div class="text-[11px] space-y-1.5 text-text-secondary mb-4 border-t border-white/5 pt-3">
+                        <div>Tuition: <span class="text-emerald-400 font-mono font-bold">€0 – €3k/yr</span></div>
+                        <div>Living: <span class="text-white font-mono">€934–€1.2k/mo</span></div>
+                    </div>
+                </div>
+                <a href="index.html?search=Germany" class="glow-button py-2 rounded-xl text-center text-xs font-bold text-white uppercase tracking-wider block">
+                    Find Germany Colleges &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admissions & Scholarships Showcase Section -->
+    <section class="max-w-container-max mx-auto px-gutter my-section-gap-lg reveal" id="admissions">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-outline-variant pb-6 gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-3">
+                    <span class="material-symbols-outlined text-[16px]">school</span> Application Blueprint
+                </div>
+                <h2 class="font-headline-xl text-headline-xl text-white">Admissions Roadmap & <span class="text-gradient-cyan">Scholarships</span></h2>
+                <p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+                    Master the full application cycle from test prep and drafting compelling SOPs to securing fully-funded global scholarships.
+                </p>
+            </div>
+            <a href="admissions.html" class="glow-button px-6 py-2.5 rounded-full font-bold text-white text-xs tracking-wider uppercase inline-flex items-center gap-2 shrink-0">
+                Open Admissions Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-accent-cyan/15 flex items-center justify-center text-accent-cyan mb-4">
+                    <span class="material-symbols-outlined">checklist</span>
+                </div>
+                <h3 class="font-headline text-lg font-bold text-white mb-2">4-Phase Admissions Blueprint</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-4">
+                    Structured 12-month calendar covering profile assessment, IELTS/GRE testing, dossier crafting, and visa interviews.
+                </p>
+                <a href="admissions.html" class="text-accent-cyan text-xs font-bold hover:underline flex items-center gap-1">
+                    View Complete Roadmap &rarr;
+                </a>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary mb-4">
+                    <span class="material-symbols-outlined">fact_check</span>
+                </div>
+                <h3 class="font-headline text-lg font-bold text-white mb-2">Readiness Calculator</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-4">
+                    Evaluate your profile against our 8-point dossier checklist with dynamic readiness scoring and personalized advice.
+                </p>
+                <a href="admissions.html" class="text-secondary text-xs font-bold hover:underline flex items-center gap-1">
+                    Calculate Profile Readiness &rarr;
+                </a>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400 mb-4">
+                    <span class="material-symbols-outlined">card_membership</span>
+                </div>
+                <h3 class="font-headline text-lg font-bold text-white mb-2">100% Funded Scholarships</h3>
+                <p class="text-xs text-text-secondary leading-relaxed mb-4">
+                    Comprehensive directories for Fulbright (USA), Chevening (UK), DAAD (Germany), Australia Awards, and Erasmus Mundus.
+                </p>
+                <a href="admissions.html" class="text-emerald-400 text-xs font-bold hover:underline flex items-center gap-1">
+                    Explore Scholarships &rarr;
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="bg-surface-container-low py-section-gap-lg overflow-hidden relative reveal">
+        <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8 relative z-10">
+                <h2 class="font-headline-xl text-headline-xl text-white">About <span class="text-accent-cyan">CollegeAtlas</span></h2>
+                <p class="font-body-lg text-body-lg text-on-surface">Welcome to College Finder, your trusted platform for exploring top colleges and universities around the world. We understand that choosing the right college is one of the most important decisions in a student’s life.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-l-secondary group">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined text-secondary group-hover:rotate-12 transition-transform">explore</span>
+                            <h3 class="font-headline-md text-headline-md">What we do</h3>
+                        </div>
+                        <ul class="font-body-sm text-body-sm text-on-surface-variant space-y-2 list-disc ml-4">
+                            <li>Global discovery tools</li>
+                            <li>Comparative ranking data</li>
+                            <li>Admission guide support</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl border-l-4 border-l-accent-cyan group">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="material-symbols-outlined text-accent-cyan group-hover:-translate-y-1 transition-transform">rocket_launch</span>
+                            <h3 class="font-headline-md text-headline-md">Our Mission</h3>
+                        </div>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Empower students through transparent, accurate university data globally.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-8 rounded-xl">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="material-symbols-outlined text-primary">verified</span>
+                        <h3 class="font-headline-md text-headline-md">Why Choose Us?</h3>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-2 text-body-sm hover:text-accent-cyan transition-colors cursor-default"><span class="material-symbols-outlined text-[16px] text-accent-cyan">check_circle</span> Wide Database</div>
+                        <div class="flex items-center gap-2 text-body-sm hover:text-accent-cyan transition-colors cursor-default"><span class="material-symbols-outlined text-[16px] text-accent-cyan">check_circle</span> Quick Search UI</div>
+                        <div class="flex items-center gap-2 text-body-sm hover:text-accent-cyan transition-colors cursor-default"><span class="material-symbols-outlined text-[16px] text-accent-cyan">check_circle</span> Reliable Updates</div>
+                        <div class="flex items-center gap-2 text-body-sm hover:text-accent-cyan transition-colors cursor-default"><span class="material-symbols-outlined text-[16px] text-accent-cyan">check_circle</span> Career Matching</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="absolute -inset-10 bg-gradient-to-tr from-secondary/20 to-accent-cyan/20 blur-3xl opacity-50 rounded-full group-hover:opacity-75 transition-opacity duration-700"></div>
+                <img alt="About Us Illustration" class="relative z-10 w-full max-w-md mx-auto drop-shadow-[0_20px_50px_rgba(0,240,255,0.2)] transition-transform duration-700 group-hover:scale-105" src="images/aboutus-img.png"/>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get In Touch Section -->
+    <section class="py-section-gap-lg reveal">
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="text-center mb-16">
+                <span class="text-secondary font-label-bold tracking-widest block mb-4 uppercase">Write to us</span>
+                <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white">Get In <span class="text-gradient-cyan">Touch</span></h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="glass-card p-8 rounded-2xl flex items-start gap-6 group">
+                        <div class="w-12 h-12 rounded-lg bg-secondary/20 flex items-center justify-center shrink-0 transition-transform group-hover:rotate-12">
+                            <span class="material-symbols-outlined text-secondary">mail</span>
+                        </div>
+                        <div>
+                            <h4 class="font-label-bold text-on-surface-variant mb-1 uppercase">Email</h4>
+                            <p class="font-body-md text-white group-hover:text-accent-cyan transition-colors">CollegeAtlas.info@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl flex items-start gap-6 group">
+                        <div class="w-12 h-12 rounded-lg bg-accent-cyan/20 flex items-center justify-center shrink-0 transition-transform group-hover:rotate-12">
+                            <span class="material-symbols-outlined text-accent-cyan">call</span>
+                        </div>
+                        <div>
+                            <h4 class="font-label-bold text-on-surface-variant mb-1 uppercase">Phone</h4>
+                            <p class="font-body-md text-white group-hover:text-accent-cyan transition-colors">+91 7356376611</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl flex items-start gap-6 group">
+                        <div class="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 transition-transform group-hover:rotate-12">
+                            <span class="material-symbols-outlined text-primary">location_on</span>
+                        </div>
+                        <div>
+                            <h4 class="font-label-bold text-on-surface-variant mb-1 uppercase">Headquarter</h4>
+                            <p class="font-body-md text-white group-hover:text-accent-cyan transition-colors">Kanpur, Uttar Pradesh, India</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Form -->
+                <div class="lg:col-span-2">
+                    <form id="enquiry-form" class="glass-card p-10 rounded-2xl space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="font-label-bold text-on-surface-variant uppercase text-[10px]">First Name</label>
+                                <input id="firstName" class="w-full bg-surface-deep/50 border-0 border-b-2 border-outline-variant focus:ring-0 input-glow p-3 text-white transition-all" placeholder="Your first name" type="text" required/>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-bold text-on-surface-variant uppercase text-[10px]">Last Name</label>
+                                <input id="lastName" class="w-full bg-surface-deep/50 border-0 border-b-2 border-outline-variant focus:ring-0 input-glow p-3 text-white transition-all" placeholder="Your last name" type="text" required/>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-bold text-on-surface-variant uppercase text-[10px]">Email Address</label>
+                            <input id="email" class="w-full bg-surface-deep/50 border-0 border-b-2 border-outline-variant focus:ring-0 input-glow p-3 text-white transition-all" placeholder="example@gmail.com" type="email" required/>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-label-bold text-on-surface-variant uppercase text-[10px]">Message</label>
+                            <textarea id="message" class="w-full bg-surface-deep/50 border-0 border-b-2 border-outline-variant focus:ring-0 input-glow p-3 text-white transition-all" placeholder="How can we help you today?" rows="4" required></textarea>
+                        </div>
+                        <div class="space-y-4">
+                            <label class="flex items-start gap-3 cursor-pointer group">
+                                <input id="communication" class="mt-1 rounded bg-surface-deep border-outline-variant text-accent-cyan focus:ring-accent-cyan" type="checkbox" required/>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">I agree to receive updates about top colleges, courses, and admission alerts.</span>
+                            </label>
+                            <label class="flex items-start gap-3 cursor-pointer group">
+                                <input id="data" class="mt-1 rounded bg-surface-deep border-outline-variant text-accent-cyan focus:ring-accent-cyan" type="checkbox" required/>
+                                <span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors">I give my consent to CollegeAtlas to securely store my details for personalized recommendations.</span>
+                            </label>
+                        </div>
+                        <button class="glow-button w-full py-4 rounded-xl font-bold text-white uppercase tracking-widest text-body-md mt-4 shadow-xl" type="submit">Start for Free</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-deep w-full py-section-gap-sm border-t border-outline-variant mt-section-gap-lg">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max mx-auto">
+        <div class="space-y-6">
+            <div class="font-headline-sm text-headline-sm font-bold text-accent-cyan">CollegeAtlas</div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 CollegeAtlas. All Rights Reserved. Shaping global academic futures.</p>
+            <div class="flex gap-4">
+                <a class="w-10 h-10 rounded-full bg-surface-glass border border-white/10 flex items-center justify-center hover:text-accent-cyan hover:border-accent-cyan hover:shadow-[0_0_10px_rgba(0,240,255,0.3)] transition-all" href="#">
+                    <span class="material-symbols-outlined text-[20px]">public</span>
+                </a>
+                <a class="w-10 h-10 rounded-full bg-surface-glass border border-white/10 flex items-center justify-center hover:text-accent-cyan hover:border-accent-cyan hover:shadow-[0_0_10px_rgba(0,240,255,0.3)] transition-all" href="#">
+                    <span class="material-symbols-outlined text-[20px]">share</span>
+                </a>
+                <a class="w-10 h-10 rounded-full bg-surface-glass border border-white/10 flex items-center justify-center hover:text-accent-cyan hover:border-accent-cyan hover:shadow-[0_0_10px_rgba(0,240,255,0.3)] transition-all" href="#">
+                    <span class="material-symbols-outlined text-[20px]">alternate_email</span>
+                </a>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <h5 class="font-label-bold text-white uppercase tracking-widest">Platform</h5>
+            <nav class="flex flex-col gap-2">
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="index.html">Universities</a>
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="rankings.html">Rankings</a>
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="destinations.html">Destinations</a>
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="admissions.html">Admissions</a>
+            </nav>
+        </div>
+        <div class="space-y-4">
+            <h5 class="font-label-bold text-white uppercase tracking-widest">Community</h5>
+            <nav class="flex flex-col gap-2">
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="#">Alumni Network</a>
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="#">Global Partners</a>
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="#">Privacy Policy</a>
+            </nav>
+        </div>
+        <div class="space-y-4">
+            <h5 class="font-label-bold text-white uppercase tracking-widest">Legal</h5>
+            <nav class="flex flex-col gap-2">
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="#">Terms of Service</a>
+                <a class="font-body-sm text-body-sm text-on-surface-variant hover:text-accent-cyan transition-colors" href="#">Cookie Settings</a>
+            </nav>
+        </div>
+    </div>
+    <div class="text-center mt-12 border-t border-white/5 pt-8">
+        <p class="font-body-sm text-[10px] text-outline uppercase tracking-[0.2em]">Designed for the next generation of global scholars</p>
+    </div>
+</footer>
+
+<!-- Loader Overlay -->
+<div id="loader-overlay" class="fixed inset-0 z-[100] hidden items-center justify-center bg-background/80 backdrop-blur-sm">
+    <div class="animate-spin rounded-full h-12 w-12 border-4 border-white/10 border-t-accent-cyan"></div>
+</div>
+
+<!-- College Overlay -->
+<div id="college-overlay" class="fixed inset-0 z-[90] hidden items-center justify-center bg-background/90 backdrop-blur-md p-4 overflow-y-auto">
+    <div class="glass-card w-full max-w-6xl rounded-2xl p-8 relative max-h-[85vh] overflow-y-auto shadow-2xl flex flex-col md:flex-row gap-8">
+        
+        <!-- Main content (Search results & filters) -->
+        <div class="flex-1">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-8 pr-12 md:pr-16">
+                <div>
+                    <h2 class="font-headline-lg text-headline-lg text-white font-bold mb-1">Search Results</h2>
+                    <p id="search-stats" class="text-accent-cyan text-sm font-semibold tracking-wider uppercase">Loading colleges...</p>
+                </div>
+                
+                <!-- Filters -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="relative min-w-[200px]">
+                        <input id="modal-search-box" class="w-full bg-[#050608]/40 border border-white/15 focus:border-accent-cyan rounded-full px-4 py-2 text-white text-xs outline-none focus:ring-0" placeholder="Filter by name or state..."/>
+                    </div>
+                    <div class="relative">
+                        <select id="state-filter" class="bg-[#050608]/60 border border-white/15 focus:border-accent-cyan text-white text-xs rounded-full px-4 py-2 pr-8 outline-none focus:ring-0 cursor-pointer appearance-none">
+                            <option value="">All States/Provinces</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="college-results grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[50vh] overflow-y-auto pr-2">
+                <!-- Dynamic cards rendered by script.js -->
+            </div>
+            
+            <!-- Pagination Controls -->
+            <div id="pagination-controls" class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 pt-4 border-t border-white/10">
+                <span id="pagination-text" class="text-xs text-text-secondary">Showing 0-0 of 0 universities</span>
+                <div class="flex items-center gap-2">
+                    <button id="prev-page-btn" class="px-4 py-2 border border-white/10 hover:border-accent-cyan/50 hover:bg-accent-cyan/10 rounded-lg text-xs font-bold text-text-secondary hover:text-accent-cyan disabled:opacity-30 disabled:pointer-events-none transition-all">
+                        Previous
+                    </button>
+                    <span id="page-indicator" class="text-xs font-semibold text-white px-3 py-1 bg-white/5 border border-white/10 rounded-md">Page 1 of 1</span>
+                    <button id="next-page-btn" class="px-4 py-2 border border-white/10 hover:border-accent-cyan/50 hover:bg-accent-cyan/10 rounded-lg text-xs font-bold text-text-secondary hover:text-accent-cyan disabled:opacity-30 disabled:pointer-events-none transition-all">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right side detailed view (drawer style) -->
+        <div id="detail-drawer" class="hidden w-full md:w-[350px] bg-[#0c0e12]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col justify-between shrink-0 shadow-2xl transition-all duration-300">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="bg-accent-cyan/15 text-accent-cyan px-3 py-1 rounded-full font-label-bold text-[10px] uppercase">Details</span>
+                    <button id="close-drawer" class="text-text-secondary hover:text-white text-xs">Close ✖</button>
+                </div>
+                
+                <h3 id="drawer-college-name" class="font-headline-md text-headline-md text-white font-bold mb-2 leading-tight">College Name</h3>
+                <p id="drawer-college-location" class="text-text-secondary text-sm flex items-center gap-1.5 mb-6">
+                    <span class="material-symbols-outlined text-[16px] text-accent-cyan">location_on</span> Country, State
+                </p>
+                
+                <div class="space-y-4 border-t border-white/5 pt-4">
+                    <div>
+                        <h5 class="text-text-secondary font-bold text-[10px] uppercase tracking-wider mb-2">Websites & Links</h5>
+                        <ul id="drawer-college-links" class="space-y-2 text-xs">
+                            <!-- Populated dynamically -->
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="text-text-secondary font-bold text-[10px] uppercase tracking-wider mb-2">Official Domains</h5>
+                        <div id="drawer-college-domains" class="flex flex-wrap gap-1.5">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contextual Enquiry Form -->
+            <div class="border-t border-white/10 pt-6 mt-6">
+                <h4 class="text-white text-sm font-bold mb-3">Quick Inquiry</h4>
+                <form id="drawer-enquiry-form" class="space-y-3">
+                    <input id="drawer-name" type="text" class="w-full bg-[#050608]/40 border border-white/10 rounded px-3 py-1.5 text-xs text-white placeholder:text-outline outline-none focus:border-accent-cyan focus:ring-0" placeholder="Your Name" required/>
+                    <input id="drawer-email" type="email" class="w-full bg-[#050608]/40 border border-white/10 rounded px-3 py-1.5 text-xs text-white placeholder:text-outline outline-none focus:border-accent-cyan focus:ring-0" placeholder="Your Email" required/>
+                    <textarea id="drawer-message" rows="2" class="w-full bg-[#050608]/40 border border-white/10 rounded px-3 py-1.5 text-xs text-white placeholder:text-outline outline-none focus:border-accent-cyan focus:ring-0" placeholder="I'm interested in admission requirements..." required></textarea>
+                    <button class="glow-button w-full py-2 rounded text-xs font-bold text-white uppercase tracking-wider mt-1" type="submit">Submit Enquiry</button>
+                </form>
+            </div>
+        </div>
+        
+        <button id="close-overlay" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-red-500 hover:border-red-500 hover:rotate-90 transition-all duration-300">✖</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+<script src="script.js"></script>
+<script>
+    // 1. Entrance Animations: Intersection Observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 2. Parallax Logic
+    const heroImg = document.getElementById('hero-bg');
+    
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Hero Parallax
+        if (heroImg) {
+            const xOffset = (window.innerWidth / 2 - mouseX) / 50;
+            const yOffset = (window.innerHeight / 2 - mouseY) / 50;
+            heroImg.style.transform = `scale(1.15) translate(${xOffset}px, ${yOffset}px)`;
+        }
+    });
+
+    // 3. Ambient Glow Particles (Canvas)
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 1.5 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.speedY = (Math.random() - 0.5) * 0.4;
+            this.opacity = Math.random() * 0.5 + 0.1;
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                this.reset();
+            }
+        }
+        draw() {
+            ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < 60; i++) {
+            particles.push(new Particle());
+        }
+    }
+    initParticles();
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // 4. Header Scroll Effect
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+            header.classList.add('py-2', 'bg-surface-deep/95');
+            header.classList.remove('py-4', 'bg-surface-glass');
+        } else {
+            header.classList.remove('py-2', 'bg-surface-deep/95');
+            header.classList.add('py-4', 'bg-surface-glass');
+        }
+    });
+
+    // 5. Card Mouse Follow Glow
+    document.querySelectorAll('.glass-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+/dist
+/build
+
+# Environment Configuration (API keys, DB passwords)
+*.env
+.env*
+config.env
+backend/config.env
+
+# Vercel deployment folder
+.vercel
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# Editor / System config
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
